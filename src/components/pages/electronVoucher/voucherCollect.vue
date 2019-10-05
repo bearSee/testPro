@@ -181,7 +181,7 @@ export default {
             value: 'ACCOUNTANT_OTHERS',
           },
         ],
-        // fastCode: 'VOUCHER_TYPE',
+        fastCode: 'VOUCHER_EXCEL_TYPE',
       },
       templateInfo: {
         action: '/erssys/voucherCollect/importVoucherCollectExcel',
@@ -563,6 +563,7 @@ export default {
         },
       ],
       uploadData: [],
+      isUpload: false,
     };
   },
   mounted() {
@@ -580,6 +581,7 @@ export default {
       this.importVisible = false;
     },
     cloaseMask() {
+      this.importVisible = false;
       this.isImporting = false;
     },
     readyDownTemplate() {
