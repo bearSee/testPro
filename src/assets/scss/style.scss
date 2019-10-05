@@ -1,0 +1,106 @@
+@import "./theme.scss";
+
+ // 全屏dialog (header)
+ .el-dialog{
+  .el-dialog__header  {
+    background-color: $theme;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 20px;
+    padding-bottom: unset;
+    .el-dialog__title {
+      color: white;
+      font-size: 16px;
+    }
+    .el-dialog__headerbtn {
+      top: 15px;
+      .el-dialog__close {
+        color: white;
+      }
+    }
+  } 
+}
+
+// 覆盖element-variables.scss样式
+.el-dialog:not(.is-fullscreen) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 !important;
+  border-radius: 13px;
+  // 非全屏dialog (header)
+  .el-dialog__header {
+    border-radius: 13px 13px 0 0;
+    padding-top: 10px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #eee;
+    border-radius: 13px 13px 0px 0px;
+    .el-dialog__headerbtn {
+      top: 15px;
+      .el-dialog__close {
+        color: black;
+      }
+    }
+    .el-dialog__title {
+      font-size: 15px;
+      color: black;
+    }    
+  }
+  .el-dialog__body {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-bottom: 20px;
+    .zte-table:not(.muti-select-table) {
+      .table-body {
+        .el-table__body-wrapper {
+          flex: 1 1 auto!important;
+        }
+      }
+    }
+  }
+}
+
+.el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
+  transform: scale(0.5, 1);
+}
+.el-checkbox__inner::after {
+  border-width: 2px;
+  top: 0;
+}
+.el-date-picker.el-popper.has-time {
+  .el-picker-panel__footer {
+    .el-button.el-picker-panel__link-btn.el-button--text.el-button--mini {
+      display: none;
+    }
+  }
+}
+
+.tab-container {
+  .el-row {
+    margin-bottom: 10px;
+    .el-button + span .el-button {
+      margin-left: 10px;
+    }
+  }
+}
+
+.el-scrollbar__wrap:not(.el-select-dropdown__wrap) {
+  overflow-x: hidden;
+}
+.el-form {
+  .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 100%;
+  }
+}
+
+.el-table {
+  .el-table__header-wrapper {
+    .el-table__header {
+      th {
+        background: $tableHead;
+        padding: 6px 0;
+      }
+    }
+  }
+}
