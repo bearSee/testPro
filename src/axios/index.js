@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
 import qs from 'qs';
-import store from '@/store';
 import router from '@/router';
 
 // axios.defaults.baseURL = `${window.location.protocol}//${window.location.host}/ztessc-ers/erssys`;
@@ -13,13 +12,6 @@ axios.defaults.transformRequest = [data => qs.stringify(data)];
 axios.interceptors.request.use((config) => {
   if (window.localStorage.getItem('Authorization')) {
     config.headers.Authorization = window.localStorage.getItem('Authorization');
-  }
-  // 让每个请求携带token--['X-Token']为自定义key
-  if (Vue.prototype.$cookies.get('user_session')) {
-    config.headers['X-Token'] = Vue.prototype.$cookies.get('user_session');
-  }
-  if (Vue.prototype.$cookies.get('user_language')) {
-    config.headers['Accept-Language'] = Vue.prototype.$cookies.get('user_language');
   }
   // get请求增加时间戳，避免服务器304
   if (config.method === 'get') {
@@ -51,17 +43,16 @@ axios.interceptors.response.use(
     }
     Vue.prototype.$message.error(res.data.message);
     if (res.data.code === '10000') {
-      store.commit('setLogout');
       router.push('/login');
     }
     return Promise.reject(res);
   },
   (res) => {
+    console.log('err', res);
     if (res.response) {
       Vue.prototype.$message.error(res.response.data.message);
     }
     return Promise.reject(res.response);
   },
 );
-
 Vue.prototype.$http = axios;
